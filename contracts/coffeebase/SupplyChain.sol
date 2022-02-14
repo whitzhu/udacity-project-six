@@ -4,13 +4,15 @@ import "../coffeeaccesscontrol/DistributorRole.sol";
 import "../coffeeaccesscontrol/ConsumerRole.sol";
 import "../coffeeaccesscontrol/RetailerRole.sol";
 import "../coffeeaccesscontrol/FarmerRole.sol";
+import "../coffeecore/Ownable.sol";
 
 // Define a contract 'Supplychain'
 contract SupplyChain is
     DistributorRole,
     ConsumerRole,
     RetailerRole,
-    FarmerRole
+    FarmerRole,
+    Ownable
 {
     // Define a variable called 'upc' for Universal Product Code (UPC)
     uint256 upc;
