@@ -167,6 +167,9 @@ App = {
       case 12:
         return await App.applyRoles(event);
         break;
+      case 13:
+        return await App.verifyItem(event);
+        break;
     }
   },
 
@@ -307,6 +310,7 @@ App = {
       console.error(err.message);
     }
   },
+
   refundItem: async function (event) {
     event.preventDefault();
     var processId = parseInt($(event.target).data("id"));
@@ -319,6 +323,22 @@ App = {
       });
       $("#ftc-item").text(result);
       console.log("refundItem", result);
+    } catch (err) {
+      console.error(err.message);
+    }
+  },
+
+  verifyItem: async function (event) {
+    event.preventDefault();
+    var processId = parseInt($(event.target).data("id"));
+
+    try {
+      const instance = await App.contracts.SupplyChain.deployed();
+      const result = await instance.verifyItem(App.upc, {
+        from: App.metamaskAccountID,
+      });
+      $("#product-verify").text(result ? "✅ " : "❌");
+      console.log("verifyItem", result);
     } catch (err) {
       console.error(err.message);
     }
@@ -372,6 +392,7 @@ App = {
   applyRoles: async function () {
     try {
       const instance = await App.contracts.SupplyChain.deployed();
+      const owner = await instance.owner();
       const isDistributor = await instance.isDistributor(App.distributorID);
       const isRetailer = await instance.isRetailer(App.retailerID);
       const isConsumer = await instance.isConsumer(App.consumerID);

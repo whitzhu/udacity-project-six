@@ -551,4 +551,13 @@ contract("SupplyChain", function (accounts) {
     );
     assert.equal(eventEmitted, true, "Invalid event emitted");
   });
+
+  // 12th Test
+  it("Testing smart contract function verifyItem()", async () => {
+    const supplyChain = await SupplyChain.deployed();
+    const result1 = await supplyChain.verifyItem(upc, {
+      from: retailerID,
+    });
+    assert.equal(result1, true, "verifyItem incorrectly");
+  });
 });

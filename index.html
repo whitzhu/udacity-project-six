@@ -51,7 +51,11 @@
           <button class="btn-fetchTwo" id="button" type="button" data-id="10">
             Fetch Data 2
           </button>
+          <button class="btn-verify" id="button" type="button" data-id="13">
+            Verify Item
+          </button>
           <br />
+          <p>Verify Item: <span id="product-verify"></span></p>
           <p>Product Owner: <span id="product-owner"></span></p>
           <p>Product Farmer: <span id="product-farmer"></span></p>
           <p>Product Farm Name: <span id="product-farm-name"></span></p>
@@ -111,23 +115,6 @@
           name="originFarmLongitude"
           value="144.341490"
         /><br />
-        <br />
-        <button class="btn-harvest" id="button" type="button" data-id="1">
-          Harvest
-        </button>
-        <button class="btn-process" id="button" type="button" data-id="2">
-          Process
-        </button>
-        <button class="btn-pack" id="button" type="button" data-id="3">
-          Pack
-        </button>
-        <button class="btn-forsale" id="button" type="button" data-id="4">
-          ForSale
-        </button>
-      </div>
-      <div class="form-break"></div>
-      <h2>Product Details</h2>
-      <div class="form-group">
         Product Notes
         <br />
         <input
@@ -145,6 +132,23 @@
           name="productPrice"
           value="1"
         />ETH<br />
+        <br />
+        <button class="btn-harvest" id="button" type="button" data-id="1">
+          Harvest
+        </button>
+        <button class="btn-process" id="button" type="button" data-id="2">
+          Process
+        </button>
+        <button class="btn-pack" id="button" type="button" data-id="3">
+          Pack
+        </button>
+        <button class="btn-forsale" id="button" type="button" data-id="4">
+          ForSale
+        </button>
+      </div>
+      <div class="form-break"></div>
+      <h2>Product Details</h2>
+      <div class="form-group">
         Distributor ID
         <br />
         <input
@@ -175,22 +179,22 @@
         /><br />
         <br />
         <button class="btn-buy" id="button" type="button" data-id="5">
-          Buy
+          Buy (Distributor Only)
         </button>
         <button class="btn-ship" id="button" type="button" data-id="6">
-          Ship
+          Ship (Distributor Only)
         </button>
         <button class="btn-receive" id="button" type="button" data-id="7">
-          Receive
+          Receive (Retailer Only)
         </button>
         <button class="btn-purchase" id="button" type="button" data-id="8">
-          Purchase
+          Purchase (Consumer Only)
         </button>
         <button class="btn-apply-roles" id="button" type="button" data-id="11">
           Refund (Retailer Only)
         </button>
         <button class="btn-apply-roles" id="button" type="button" data-id="12">
-          Apply Roles (Owner Only)
+          Apply Roles (Limited Access)
         </button>
       </div>
       <div class="form-break"></div>

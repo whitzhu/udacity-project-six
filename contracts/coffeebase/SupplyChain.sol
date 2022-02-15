@@ -70,6 +70,8 @@ contract SupplyChain is
     event Received(uint256 upc);
     event Purchased(uint256 upc);
     event Returned(uint256 upc);
+    event ValidItem(uint256 upc);
+    event InvalidItem(uint256 upc);
 
     // Define a modifer that verifies the Caller
     modifier verifyCaller(address _address) {
@@ -358,7 +360,7 @@ contract SupplyChain is
         emit Purchased(_upc);
     }
 
-    // Define a function 'purchaseItem' that allows the consumer to mark an item 'Purchased'
+    // Define a function 'refundItem' that allows the consumer to mark an item 'Received'
     // Use the above modifiers to check if the item is received
     function refundItem(uint256 _upc)
         public
@@ -382,6 +384,15 @@ contract SupplyChain is
 
         // Emit the appropriate event
         emit Returned(_upc);
+    }
+
+    // Define a function 'refundItem' that allows the consumer to mark an item 'Received'
+    // Use the above modifiers to check if the item is received
+    function verifyItem(uint256 _upc) public view returns (bool) {
+        Item storage item = items[_upc];
+        return (isDistributor(item.distributorID) &&
+            isRetailer(item.retailerID) &&
+            isFarmer(item.originFarmerID));
     }
 
     // Define a function 'fetchItemBufferOne' that fetches the data
