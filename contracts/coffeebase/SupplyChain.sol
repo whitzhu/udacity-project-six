@@ -185,7 +185,7 @@ contract SupplyChain is
         string memory _originFarmLatitude,
         string memory _originFarmLongitude,
         string memory _productNotes
-    ) public onlyFarmer verifyCaller(msg.sender) {
+    ) public onlyFarmer {
         // Add the new item as part of Harvest
         Item memory item = Item({
             sku: sku,
@@ -220,7 +220,7 @@ contract SupplyChain is
         harvested(_upc)
         // Call modifier to verify caller of this function
         onlyFarmer
-        verifyCaller(msg.sender)
+        verifyCaller(items[_upc].ownerID)
     {
         // Update the appropriate fields
         Item storage item = items[_upc];
@@ -237,7 +237,7 @@ contract SupplyChain is
         processed(_upc)
         // Call modifier to verify caller of this function
         onlyFarmer
-        verifyCaller(msg.sender)
+        verifyCaller(items[_upc].ownerID)
     {
         // Update the appropriate fields
         Item storage item = items[_upc];
@@ -254,7 +254,7 @@ contract SupplyChain is
         packed(_upc)
         // Call modifier to verify caller of this function
         onlyFarmer
-        verifyCaller(msg.sender)
+        verifyCaller(items[_upc].ownerID)
     {
         // Update the appropriate fields
         Item storage item = items[_upc];
@@ -371,6 +371,7 @@ contract SupplyChain is
         checkValue(_upc)
         // Access Control List enforced by calling Smart Contract / DApp
         onlyRetailer
+        verifyCaller(items[_upc].retailerID)
     {
         // Transfer money to consumer
         Item storage item = items[_upc];
